@@ -101,9 +101,17 @@ button { cursor: pointer; background: none; border: none; font: inherit; }
   border-radius: var(--radius-sm);
 }
 
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 @media (max-width: 768px) {
   .nav-desktop { display: none !important; }
   .nav-mobile-toggle { display: flex !important; }
+  .hero-grid { flex-direction: column !important; }
+  .hero-left { flex: 1 1 auto !important; }
+  .hero-right { display: none !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
