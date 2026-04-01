@@ -1,8 +1,14 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+
 function App() {
   return (
-    <div>
-      <h1>TimeTravel Agency</h1>
-    </div>
+    <BrowserRouter>
+      <div className="grain-overlay" />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
