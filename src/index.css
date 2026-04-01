@@ -101,6 +101,11 @@ button { cursor: pointer; background: none; border: none; font: inherit; }
   border-radius: var(--radius-sm);
 }
 
+@media (max-width: 768px) {
+  .nav-desktop { display: none !important; }
+  .nav-mobile-toggle { display: flex !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
