@@ -4,8 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 const NAV_LINKS = [
   { label: 'ACCUEIL', href: '#top' },
   { label: 'DESTINATIONS', href: '#destinations' },
-  { label: 'NOTRE AGENT', action: 'chat' },
-  { label: 'RÉSERVER', action: 'book' },
+  { label: 'CHRONOS', action: 'chat' },
 ]
 
 export default function Navbar() {
