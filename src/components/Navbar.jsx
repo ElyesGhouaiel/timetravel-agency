@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_LINKS = [
-  { label: 'ACCUEIL', href: '#' },
+  { label: 'ACCUEIL', href: '#top' },
   { label: 'DESTINATIONS', href: '#destinations' },
-  { label: 'NOTRE AGENT', href: '#chat' },
+  { label: 'NOTRE AGENT', action: 'chat' },
   { label: 'RÉSERVER', href: '#destinations' },
 ]
 
@@ -73,7 +73,14 @@ export default function Navbar() {
         {NAV_LINKS.map((link) => (
           <a
             key={link.label}
-            href={link.href}
+            href={link.href || '#'}
+            onClick={(e) => {
+              if (link.action === 'chat') {
+                e.preventDefault()
+                const chatBtn = document.querySelector('[data-chat-toggle]')
+                if (chatBtn) chatBtn.click()
+              }
+            }}
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: 'var(--text-sm)',
@@ -82,6 +89,7 @@ export default function Navbar() {
               color: 'var(--color-muted)',
               textDecoration: 'none',
               transition: 'color 200ms',
+              cursor: 'pointer',
             }}
             onMouseEnter={(e) => (e.target.style.color = 'var(--color-text)')}
             onMouseLeave={(e) => (e.target.style.color = 'var(--color-muted)')}
@@ -144,8 +152,17 @@ export default function Navbar() {
             {NAV_LINKS.map((link, i) => (
               <motion.a
                 key={link.label}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
+                href={link.href || '#'}
+                onClick={(e) => {
+                  setMobileOpen(false)
+                  if (link.action === 'chat') {
+                    e.preventDefault()
+                    setTimeout(() => {
+                      const chatBtn = document.querySelector('[data-chat-toggle]')
+                      if (chatBtn) chatBtn.click()
+                    }, 400)
+                  }
+                }}
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 + i * 0.08, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
