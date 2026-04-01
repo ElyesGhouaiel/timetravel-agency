@@ -1,5 +1,8 @@
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
+import DestinationsGrid from '../components/DestinationsGrid'
+import ChatWidget from '../components/ChatWidget'
+import Footer from '../components/Footer'
 
 export default function Home() {
   return (
@@ -7,7 +10,16 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <section id="destinations" style={{
+          padding: 'var(--space-24) var(--space-6)',
+          maxWidth: '1200px',
+          margin: '0 auto',
+        }}>
+          <DestinationsGrid />
+        </section>
       </main>
+      <ChatWidget />
+      <Footer />
     </>
   )
 }
