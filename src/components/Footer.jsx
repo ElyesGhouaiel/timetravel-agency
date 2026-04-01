@@ -1,10 +1,17 @@
+import { motion } from 'framer-motion'
+
 export default function Footer() {
   return (
-    <footer style={{
-      borderTop: '1px solid var(--color-border)',
-      padding: 'var(--space-16) var(--space-8) var(--space-8)',
-      background: 'var(--color-bg)',
-    }}>
+    <motion.footer
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.12 }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      style={{
+        borderTop: '1px solid var(--color-border)',
+        padding: 'var(--space-16) var(--space-8) var(--space-8)',
+        background: 'var(--color-bg)',
+      }}>
       <div className="footer-grid" style={{
         maxWidth: '1200px',
         margin: '0 auto',
@@ -120,6 +127,6 @@ export default function Footer() {
           Projet pédagogique — M1/M2 Ynov
         </span>
       </div>
-    </footer>
+    </motion.footer>
   )
 }
