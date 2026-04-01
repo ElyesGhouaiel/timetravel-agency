@@ -1,8 +1,12 @@
 import { motion } from 'framer-motion'
+import { useState } from 'react'
+export default function DestinationCard({ destination, featured ,onClick}) {
+    const [showDetails, setShowDetails] = useState(false)
 
-export default function DestinationCard({ destination, featured }) {
   return (
     <motion.div
+          onClick={onClick}
+
       whileHover={{ scale: 1.015 }}
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
       style={{
@@ -54,6 +58,7 @@ export default function DestinationCard({ destination, featured }) {
           marginTop: '4px',
           lineHeight: 1.1,
         }}>
+
           {destination.nom}
         </p>
         {featured && (
@@ -67,6 +72,67 @@ export default function DestinationCard({ destination, featured }) {
             {destination.shortDesc}
           </p>
         )}
+        <ul style={{
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: 'var(--space-2)',
+  marginTop: 'var(--space-3)',
+  listStyle: 'none',
+  padding: 0,
+}}>
+  {destination.highlights?.map((item) => (
+    <li
+      key={item}
+      style={{
+        fontFamily: 'var(--font-body)',
+        fontSize: 'var(--text-xs)',
+        color: 'var(--color-text)',
+        background: 'rgba(0,0,0,0.5)',
+        padding: '4px 8px',
+        borderRadius: 'var(--radius-full)',
+        border: '1px solid rgba(255,255,255,0.08)',
+      }}
+    >
+      {item}
+    </li>
+  ))}
+</ul>
+<button
+  type="button"
+  onClick={(e) => {
+    e.stopPropagation()
+    setShowDetails((prev) => !prev)
+  }}
+  style={{
+    marginTop: 'var(--space-3)',
+    fontFamily: 'var(--font-body)',
+    fontSize: 'var(--text-xs)',
+    color: 'var(--color-gold)',
+    background: 'transparent',
+    border: 'none',
+    padding: 0,
+    cursor: 'pointer',
+    textDecoration: 'underline',
+  }}
+>
+  {showDetails ? 'Masquer les détails' : 'Voir la description complète'}
+</button>
+{showDetails && (
+  <motion.p
+    initial={{ opacity: 0, y: 8 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.25 }}
+    style={{
+      fontFamily: 'var(--font-body)',
+      fontSize: 'var(--text-sm)',
+      color: 'var(--color-text)',
+      marginTop: 'var(--space-3)',
+      maxWidth: '55ch',
+    }}
+  >
+    {destination.longDesc}
+  </motion.p>
+)}
         <p style={{
           fontFamily: 'var(--font-body)',
           fontSize: 'var(--text-sm)',
