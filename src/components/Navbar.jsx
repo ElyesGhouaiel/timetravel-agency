@@ -5,7 +5,7 @@ const NAV_LINKS = [
   { label: 'ACCUEIL', href: '#top' },
   { label: 'DESTINATIONS', href: '#destinations' },
   { label: 'NOTRE AGENT', action: 'chat' },
-  { label: 'RÉSERVER', href: '#destinations' },
+  { label: 'RÉSERVER', action: 'book' },
 ]
 
 export default function Navbar() {
@@ -75,7 +75,7 @@ export default function Navbar() {
             key={link.label}
             href={link.href || '#'}
             onClick={(e) => {
-              if (link.action === 'chat') {
+              if (link.action) {
                 e.preventDefault()
                 const chatBtn = document.querySelector('[data-chat-toggle]')
                 if (chatBtn) chatBtn.click()
@@ -155,7 +155,7 @@ export default function Navbar() {
                 href={link.href || '#'}
                 onClick={(e) => {
                   setMobileOpen(false)
-                  if (link.action === 'chat') {
+                  if (link.action) {
                     e.preventDefault()
                     setTimeout(() => {
                       const chatBtn = document.querySelector('[data-chat-toggle]')
